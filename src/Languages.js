@@ -106,7 +106,7 @@ function Languages(props) {
     return(
         <div>
             <Form.Group controlId='formLanguages'>
-                    <h3>Languages</h3>
+                    <h4>Languages</h4>
                     {displayLangMenu(props.race, props.background)}
                     {languages}   
             </Form.Group>

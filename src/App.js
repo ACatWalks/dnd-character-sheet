@@ -1,6 +1,8 @@
 import './App.css';
 import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Alert from 'react-bootstrap/Alert'
 import RaceForm from './RaceForm'
 import ClassForm from './ClassForm'
 import AlignmentForm from './AlignmentForm'
@@ -21,6 +23,8 @@ function App() {
   const [characterClass, setCharacterClass] = useState('')
   const [alignment, setAlignment] = useState('')
   const [background, setBackground] = useState('')
+  const [name, setName] = useState('')
+  const [level, setLevel] = useState(1)
   const [strength, setStrength] = useState(10)
   const [dex, setDex] = useState(10)
   const [con, setCon] = useState(10)
@@ -42,9 +46,26 @@ function App() {
   const handleBackground = (e) => {
     setBackground(`${e.target.value}`)
   }
+  const handleName = (e) => {
+    setName(`${e.target.value}`)
+  }
+  const levelUp = () => {
+    if(level < 20){
+      setLevel(level + 1)
+    } else {
+      return (
+        <Alert variant='danger'>
+          You cannot increase your character beyond 20th level. Check out Epic Boons in the Dungeon Master's guide for ways to improve your 20th level character.
+        </Alert>
+      )
+    }
+  }
   return (
     <div className="App">
       <h1>Create Your D&D Character!</h1>
+      <Form.Label>Name</Form.Label>
+      <Form.Control type='name' onChange={handleName}></Form.Control>
+      <p>Level: {level}</p>
       <h2>The Essentials</h2>
       <RaceForm handleRace={handleRace} race={race}/>
       <ClassForm handleClass={handleClass} con={con} characterClass={characterClass} />
@@ -64,6 +85,7 @@ function App() {
       <Spells race={race} characterClass={characterClass} />
       <Animals />
       <Button variant='success' onClick={handleSubmit}>Save Character Sheet</Button>
+      <Button variant='info' onClick={levelUp}>Go up a level</Button>
     </div>
   );
 }
