@@ -11,7 +11,7 @@ function CharacterForm() {
     const [armor, setArmor] = useState('none')
     const [weapons, setWeapons] = useState('')
     const [equipmentPack, setEquipmentPack] = useState('')
-    const [toolProfs, setToolProfs] = useState('none')
+    const [toolProfs, setToolProfs] = useState([])
     const [lifestyle, setLifestyle] = useState('')
     const [strength, setStrength] = useState(10)
     const [dex, setDex] = useState(10)
@@ -26,6 +26,75 @@ function CharacterForm() {
     const handleRace = (e) => {
         let element = e.target
         setRace(`${element.value}`)
+        if(race === 'dwarf'){
+            setCon(parseInt(con) + 2)
+            languages.push('Common')
+            languages.push('Dwarvish')
+            setLanguages(languages)
+            let dwarfTools = ['Brewers supplies', 'Masons tools', 'Smiths tools']
+            let dwarfRand = Math.floor(Math.random()*3)
+            setToolProfs([dwarfTools[dwarfRand]])
+        } else if(race === 'elf'){
+            setDex(parseInt(dex) + 2)
+            languages.push('Common')
+            languages.push('Elvish')
+            setLanguages(languages)
+            skills.push('Perception')
+            setSkills(skills)
+        } else if(race === 'halfling'){
+            setDex(parseInt(dex) + 2)
+            languages.push('Common')
+            languages.push('Halfling')
+            setLanguages(languages)
+        } else if(race === 'human'){
+            setStrength(parseInt(strength) + 1)
+            setDex(parseInt(dex) + 1)
+            setCon(parseInt(con) + 1)
+            setInt(parseInt(int) + 1)
+            setWis(parseInt(wis) + 1)
+            setCha(parseInt(cha) + 1)
+            languages.push('Common')
+            alert('Please select one additional language of your choice')
+            setLanguages(languages)
+        } else if(race === 'dragonborn'){
+            setStrength(parseInt(strength) + 2)
+            setCha(parseInt(cha) + 1)
+            languages.push('Common')
+            languages.push('Draconic')
+            setLanguages(languages)
+        } else if(race === 'gnome'){
+            setInt(parseInt(int) + 2)
+            languages.push('Common')
+            languages.push('Gnomish')
+            setLanguages(languages)
+        } else if(race === 'half-elf'){
+            setCha(parseInt(cha) + 2)
+            alert('Please increase 2 ability scores other than Charisma by 1 each')
+            languages.push('Common')
+            languages.push('Elvish')
+            alert('Please select one additional language of your choice')
+            setLanguages(languages)
+        } else if(race === 'half-orc'){
+            setStrength(parseInt(strength) + 2)
+            setCon(parseInt(con) + 1)
+            languages.push('Common')
+            languages.push('Orc')
+            setLanguages(languages)
+            skills.push('Intimidation')
+            setSkills(skills)
+        } else if(race === 'tiefling'){
+            setInt(parseInt(int) + 1)
+            setCha(parseInt(cha) + 2)
+            languages.push('Common')
+            languages.push('Infernal')
+            setLanguages(languages)
+        } else if(race === 'aasimar'){
+            setWis(parseInt(wis) + 1)
+            setCha(parseInt(cha) + 2)
+            languages.push('Common')
+            languages.push('Celestial')
+            setLanguages(languages)
+        }
     }
     const handleClass = (e) => {
         let element = e.target
@@ -38,6 +107,80 @@ function CharacterForm() {
     const handleBackground = (e) => {
         let element = e.target
         setBackground(`${element.value}`)
+        if(background === 'acolyte'){
+            skills.push('Insight')
+            skills.push('Religion')
+            setSkills(skills)
+            alert('Please select 2 more languages from the language menu')
+        } else if(background === 'charlatan'){
+            skills.push('Deception')
+            skills.push('Sleight of Hand')
+            setSkills(skills)
+            setToolProfs(['Disguise kit, Forgery kit'])
+        } else if(background === 'criminal'){
+            skills.push('Deception')
+            skills.push('Stealth')
+            setSkills(skills)
+            setToolProfs(['Thieves tools'])
+            alert('Please select one kind of gaming set from the tool proficiency menu')
+        } else if(background === 'entertainer'){
+            skills.push('Acrobatics')
+            skills.push('Performance')
+            setSkills(skills)
+            setToolProfs(['Disguise kit'])
+            alert('Please select one kind of musical instrument from the tool proficiency menu')
+        } else if(background === 'folk hero'){
+            skills.push('Animal Handling')
+            skills.push('Survival')
+            setSkills(skills)
+            setToolProfs(['Land vehicles'])
+            alert('Please select one kind of artisans tools from the tool proficiency menu')
+        } else if(background === 'guild artisan'){
+            skills.push('Insight')
+            skills.push('Persuasion')
+            setSkills(skills)
+            alert('Please select a language of your choice from the language menu')
+            alert('Please select one kind of artisans tools from the tool proficiency menu')
+        } else if(background === 'hermit'){
+            skills.push('Medicine')
+            skills.push('Religion')
+            setSkills(skills)
+            setToolProfs(['Herbalism kit'])
+            alert('Please select a language of your choice from the language menu')
+        } else if(background === 'noble'){
+            skills.push('History')
+            skills.push('Persuasion')
+            setSkills(skills)
+            alert('Please select a language of your choice from the language menu')
+            alert('Please select one kind of gaming set from the tool proficiency menu')
+        } else if(background === 'outlander'){
+            skills.push('Athletics')
+            skills.push('Survival')
+            setSkills(skills)
+            alert('Please select one kind of musical instrument from the tool proficiency menu')
+            alert('Please select a language of your choice from the language menu')
+        } else if(background === 'sage'){
+            skills.push('Arcana')
+            skills.push('History')
+            setSkills(skills)
+            alert('Please select 2 more languages from the language menu')
+        } else if(background === 'sailor'){
+            skills.push('Athletics')
+            skills.push('Perception')
+            setSkills(skills)
+            setToolProfs(['Navigators tools', 'Water vehicles'])
+        } else if(background === 'soldier'){
+            skills.push('Athletics')
+            skills.push('Intimidation')
+            setSkills(skills)
+            setToolProfs(['Land vehicles'])
+            alert('Please select one kind of gaming set from the tool proficiency menu')
+        } else if(background === 'urchin'){
+            skills.push('Sleight of Hand')
+            skills.push('Stealth')
+            setSkills(skills)
+            setToolProfs(['Disguise kit', 'Thieves tools'])
+        }
     }
     const handleLifestyle = (e) => {
         let element = e.target
@@ -68,7 +211,7 @@ function CharacterForm() {
         setCha(`${element.value}`)
     }
     const handleSubmit = () => {
-        console.log(race, characterClass, alignment, background, lifestyle, strength, dex, con, int, wis, cha)
+        console.log(race, characterClass, alignment, languages, background, lifestyle, strength, dex, con, int, wis, cha, skills, toolProfs)
     }
     const calculateModifier = (score) => {
         let numScore = parseInt(score)
@@ -80,6 +223,102 @@ function CharacterForm() {
         } else{
             return '+ ' + mod
         }
+    }
+    const calculateSpeed = (race) => {
+        if(race === 'dwarf' || race === 'halfling' || race === 'gnome'){
+            return '25 ft'
+        } else{
+            return '30 ft'
+        }
+    }
+    const toggleDarkvision = (race) => {
+        let dv = false
+        if(race === 'dwarf' || race === 'elf' || race === 'gnome' || race === 'half-elf' || race === 'half-orc' || race === 'tiefling' || race === 'aasimar'){
+            dv = true
+        }
+        return dv
+    }
+    const handleLanguage = (e) => {
+        let element = e.target
+        languages.push(element)
+        setLanguages(languages)
+    }
+    const displayLangMenu = (race, background) => {
+        if (race === 'human' || race === 'half-elf' || background === 'acolyte' || background === 'guild artisan' || background === 'hermit' || background === 'noble' || background === 'outlander' || background === 'sage'){
+            return (
+                <Form.Select aria-label='language dropdown' onChange={handleLanguage}>
+                    <option value='Dwarvish'>Dwarvish</option>
+                    <option value='Elvish'>Elvish</option>
+                    <option value='Giant'>Giant</option>
+                    <option value='Gnomish'>Gnomish</option>
+                    <option value='Goblin'>Goblin</option>
+                    <option value='Halfling'>Halfling</option>
+                    <option value='Orc'>Orc</option>
+                    <option value='Abyssal'>Abyssal</option>
+                    <option value='Celestial'>Celestial</option>
+                    <option value='Deep Speech'>Deep Speech</option>
+                    <option value='Draconic'>Draconic</option>
+                    <option value='Infernal'>Infernal</option>
+                    <option value='Primordial'>Primordial</option>
+                    <option value='Sylvan'>Sylvan</option>
+                    <option value='Undercommon'>Undercommon</option>
+                </Form.Select>
+            )
+        }
+    }
+    const handleTools = (e) => {
+        let element = e.target
+        toolProfs.push(element)
+        setToolProfs(toolProfs)
+    }
+    const displayToolMenu = (background) => {
+        if(background === 'criminal' || background === 'entertainer' || background === 'folk hero' || background === 'guild artisan' || background === 'noble' || background === 'outlander' || background === 'soldier'){
+            return (
+                <Form.Select aria-label='tool dropdown' onChange={handleTools}>
+                    <p>Artisan's tools</p>
+                    <option value='Alchemists supplies'>Alchemist's supplies</option>
+                    <option value='Brewers supplies'>Brewer's supplies</option>
+                    <option value='Calligraphers supplies'>Calligrapher's supplies</option>
+                    <option value='Carpenters tools'>Carpenter's tools</option>
+                    <option value='Cartographers tools'>Cartographer's tools</option>
+                    <option value='Cobblers tools'>Cobbler's tools</option>
+                    <option value='Cooks utensils'>Cook's utensils</option>
+                    <option value='Glassblowers tools'>Glassblower's tools</option>
+                    <option value='Jewelers tools'>Jeweler's tools</option>
+                    <option value='Leatherworkers tools'>Leatherworker's tools</option>
+                    <option value='Masons tools'>Mason's tools</option>
+                    <option value='Painters supplies'>Painter's supplies</option>
+                    <option value='Potters tools'>Potter's tools</option>
+                    <option value='Smiths tools'>Smith's tools</option>
+                    <option value='Tinkers tools'>Tinker's tools</option>
+                    <option value='Weavers tools'>Weaver's tools</option>
+                    <option value='Woodcarvers tools'>Woodcarver's tools</option>
+                    <p>Gaming sets</p>
+                    <option value='Dice'>Dice set</option>
+                    <option value='Dragonchess'>Dragonchess set</option>
+                    <option value='Cards'>Playing card set</option>
+                    <option value='Three-Dragon Ante'>Three-Dragon Ante set</option>
+                    <p>Musical instruments</p>
+                    <option value='Bagpipes'>Bagpipes</option>
+                    <option value='Drum'>Drum</option>
+                    <option value='Dulcimer'>Dulcimer</option>
+                    <option value='Flute'>Flute</option>
+                    <option value='Lute'>Lute</option>
+                    <option value='Lyre'>Lyre</option>
+                    <option value='Horn'>Horn</option>
+                    <option value='Pan flute'>Pan flute</option>
+                    <option value='Shawm'>Shawm</option>
+                    <option value='Viol'>Viol</option>
+                    <option value='Zither'>Zither</option>
+                </Form.Select>
+            )
+        }
+    }
+    const displaySkills = (skills) => {
+        let possibleSkills = ['Acrobatics', 'Animal Handling', 'Arcana', 'Athletics', 'Deception', 'History', 'Insight', 'Intimidation', 'Medicine', 'Nature', 'Perception', 'Performance', 'Persuasion', 'Religion', 'Sleight of Hand', 'Stealth', 'Survival']
+        possibleSkills.map((skill) => {
+            <Form.Check type='checkbox' id={skill} label={skill} checked={skills.includes(skill)} />
+        })
     }
     return (
         <div>
@@ -99,6 +338,7 @@ function CharacterForm() {
                         <option value='tiefling'>Tiefling</option>
                         <option value='aasimar'>Aasimar</option>
                     </Form.Select>
+                    <span>Speed: {calculateSpeed()}</span>
                 </Form.Group>
                 <Form.Group controlId='formClass'>
                     <h3>Class</h3>
@@ -133,6 +373,8 @@ function CharacterForm() {
                 </Form.Group>
                 <Form.Group controlId='formLanguages'>
                     <h3>Languages</h3>
+                    {displayLangMenu(race, background)}
+                    {languages}   
                 </Form.Group>
                 <Form.Group controlId='formBackground'>
                     <h3>Background</h3>
@@ -165,6 +407,8 @@ function CharacterForm() {
                 <h2>Scores and Proficiencies</h2>
                 <Form.Group controlId='formTools'>
                     <h3>Tool Proficiencies</h3>
+                    {displayToolMenu(background)}
+                    {toolProfs}
                 </Form.Group>
                 <Form.Group controlId='formLifestyle'>
                     <h3>Lifestyle</h3>
@@ -213,6 +457,7 @@ function CharacterForm() {
                 </Form.Group>
                 <Form.Group controlId='formSkills'>
                     <h3>Skill Proficiencies</h3>
+                    {displaySkills(skills)}
                 </Form.Group>
                 <h2>Spells and Miscellaneous</h2>
                 <Form.Group controlId='formSpells'>
