@@ -33,6 +33,7 @@ function CharacterForm() {
             setLanguages(languages)
             let dwarfTools = ['Brewers supplies', 'Masons tools', 'Smiths tools']
             let dwarfRand = Math.floor(Math.random()*3)
+            toolProfs.push(dwarfTools[dwarfRand])
             setToolProfs([dwarfTools[dwarfRand]])
         } else if(race === 'elf'){
             setDex(parseInt(dex) + 2)
@@ -54,8 +55,8 @@ function CharacterForm() {
             setWis(parseInt(wis) + 1)
             setCha(parseInt(cha) + 1)
             languages.push('Common')
-            alert('Please select one additional language of your choice')
             setLanguages(languages)
+            alert('Please select one additional language of your choice')
         } else if(race === 'dragonborn'){
             setStrength(parseInt(strength) + 2)
             setCha(parseInt(cha) + 1)
@@ -72,8 +73,8 @@ function CharacterForm() {
             alert('Please increase 2 ability scores other than Charisma by 1 each')
             languages.push('Common')
             languages.push('Elvish')
-            alert('Please select one additional language of your choice')
             setLanguages(languages)
+            alert('Please select one additional language of your choice')
         } else if(race === 'half-orc'){
             setStrength(parseInt(strength) + 2)
             setCon(parseInt(con) + 1)
@@ -116,23 +117,28 @@ function CharacterForm() {
             skills.push('Deception')
             skills.push('Sleight of Hand')
             setSkills(skills)
+            toolProfs.push('Disguise kit')
+            toolProfs.push('Forgery kit')
             setToolProfs(['Disguise kit, Forgery kit'])
         } else if(background === 'criminal'){
             skills.push('Deception')
             skills.push('Stealth')
             setSkills(skills)
+            toolProfs.push('Thieves tools')
             setToolProfs(['Thieves tools'])
             alert('Please select one kind of gaming set from the tool proficiency menu')
         } else if(background === 'entertainer'){
             skills.push('Acrobatics')
             skills.push('Performance')
             setSkills(skills)
+            toolProfs.push('Disguise kit')
             setToolProfs(['Disguise kit'])
             alert('Please select one kind of musical instrument from the tool proficiency menu')
         } else if(background === 'folk hero'){
             skills.push('Animal Handling')
             skills.push('Survival')
             setSkills(skills)
+            toolProfs.push('Land vehicles')
             setToolProfs(['Land vehicles'])
             alert('Please select one kind of artisans tools from the tool proficiency menu')
         } else if(background === 'guild artisan'){
@@ -145,6 +151,7 @@ function CharacterForm() {
             skills.push('Medicine')
             skills.push('Religion')
             setSkills(skills)
+            toolProfs.push('Herbalism kit')
             setToolProfs(['Herbalism kit'])
             alert('Please select a language of your choice from the language menu')
         } else if(background === 'noble'){
@@ -168,17 +175,22 @@ function CharacterForm() {
             skills.push('Athletics')
             skills.push('Perception')
             setSkills(skills)
+            toolProfs.push('Navigators tools')
+            toolProfs.push('Water vehicles')
             setToolProfs(['Navigators tools', 'Water vehicles'])
         } else if(background === 'soldier'){
             skills.push('Athletics')
             skills.push('Intimidation')
             setSkills(skills)
+            toolProfs.push('Land vehicles')
             setToolProfs(['Land vehicles'])
             alert('Please select one kind of gaming set from the tool proficiency menu')
         } else if(background === 'urchin'){
             skills.push('Sleight of Hand')
             skills.push('Stealth')
             setSkills(skills)
+            toolProfs.push('Disguise kit')
+            toolProfs.push('Thieves tools')
             setToolProfs(['Disguise kit', 'Thieves tools'])
         }
     }
@@ -275,41 +287,38 @@ function CharacterForm() {
         if(background === 'criminal' || background === 'entertainer' || background === 'folk hero' || background === 'guild artisan' || background === 'noble' || background === 'outlander' || background === 'soldier'){
             return (
                 <Form.Select aria-label='tool dropdown' onChange={handleTools}>
-                    <p>Artisan's tools</p>
-                    <option value='Alchemists supplies'>Alchemist's supplies</option>
-                    <option value='Brewers supplies'>Brewer's supplies</option>
-                    <option value='Calligraphers supplies'>Calligrapher's supplies</option>
-                    <option value='Carpenters tools'>Carpenter's tools</option>
-                    <option value='Cartographers tools'>Cartographer's tools</option>
-                    <option value='Cobblers tools'>Cobbler's tools</option>
-                    <option value='Cooks utensils'>Cook's utensils</option>
-                    <option value='Glassblowers tools'>Glassblower's tools</option>
-                    <option value='Jewelers tools'>Jeweler's tools</option>
-                    <option value='Leatherworkers tools'>Leatherworker's tools</option>
-                    <option value='Masons tools'>Mason's tools</option>
-                    <option value='Painters supplies'>Painter's supplies</option>
-                    <option value='Potters tools'>Potter's tools</option>
-                    <option value='Smiths tools'>Smith's tools</option>
-                    <option value='Tinkers tools'>Tinker's tools</option>
-                    <option value='Weavers tools'>Weaver's tools</option>
-                    <option value='Woodcarvers tools'>Woodcarver's tools</option>
-                    <p>Gaming sets</p>
-                    <option value='Dice'>Dice set</option>
-                    <option value='Dragonchess'>Dragonchess set</option>
-                    <option value='Cards'>Playing card set</option>
-                    <option value='Three-Dragon Ante'>Three-Dragon Ante set</option>
-                    <p>Musical instruments</p>
-                    <option value='Bagpipes'>Bagpipes</option>
-                    <option value='Drum'>Drum</option>
-                    <option value='Dulcimer'>Dulcimer</option>
-                    <option value='Flute'>Flute</option>
-                    <option value='Lute'>Lute</option>
-                    <option value='Lyre'>Lyre</option>
-                    <option value='Horn'>Horn</option>
-                    <option value='Pan flute'>Pan flute</option>
-                    <option value='Shawm'>Shawm</option>
-                    <option value='Viol'>Viol</option>
-                    <option value='Zither'>Zither</option>
+                    <option value='Alchemists supplies'>Alchemist's supplies (Artisan's tools)</option>
+                    <option value='Brewers supplies'>Brewer's supplies (Artisan's tools)</option>
+                    <option value='Calligraphers supplies'>Calligrapher's supplies (Artisan's tools)</option>
+                    <option value='Carpenters tools'>Carpenter's tools (Artisan's tools)</option>
+                    <option value='Cartographers tools'>Cartographer's tools (Artisan's tools)</option>
+                    <option value='Cobblers tools'>Cobbler's tools (Artisan's tools)</option>
+                    <option value='Cooks utensils'>Cook's utensils (Artisan's tools)</option>
+                    <option value='Glassblowers tools'>Glassblower's tools (Artisan's tools)</option>
+                    <option value='Jewelers tools'>Jeweler's tools (Artisan's tools)</option>
+                    <option value='Leatherworkers tools'>Leatherworker's tools (Artisan's tools)</option>
+                    <option value='Masons tools'>Mason's tools (Artisan's tools)</option>
+                    <option value='Painters supplies'>Painter's supplies (Artisan's tools)</option>
+                    <option value='Potters tools'>Potter's tools (Artisan's tools)</option>
+                    <option value='Smiths tools'>Smith's tools (Artisan's tools)</option>
+                    <option value='Tinkers tools'>Tinker's tools (Artisan's tools)</option>
+                    <option value='Weavers tools'>Weaver's tools (Artisan's tools)</option>
+                    <option value='Woodcarvers tools'>Woodcarver's tools (Artisan's tools)</option>
+                    <option value='Dice'>Dice set (Gaming set)</option>
+                    <option value='Dragonchess'>Dragonchess set (Gaming set)</option>
+                    <option value='Cards'>Playing card set (Gaming set)</option>
+                    <option value='Three-Dragon Ante'>Three-Dragon Ante set (Gaming set)</option>
+                    <option value='Bagpipes'>Bagpipes (Musical instrument)</option>
+                    <option value='Drum'>Drum (Musical instrument)</option>
+                    <option value='Dulcimer'>Dulcimer (Musical instrument)</option>
+                    <option value='Flute'>Flute (Musical instrument)</option>
+                    <option value='Lute'>Lute (Musical instrument)</option>
+                    <option value='Lyre'>Lyre (Musical instrument)</option>
+                    <option value='Horn'>Horn (Musical instrument)</option>
+                    <option value='Pan flute'>Pan flute (Musical instrument)</option>
+                    <option value='Shawm'>Shawm (Musical instrument)</option>
+                    <option value='Viol'>Viol (Musical instrument)</option>
+                    <option value='Zither'>Zither (Musical instrument)</option>
                 </Form.Select>
             )
         }
@@ -338,7 +347,8 @@ function CharacterForm() {
                         <option value='tiefling'>Tiefling</option>
                         <option value='aasimar'>Aasimar</option>
                     </Form.Select>
-                    <span>Speed: {calculateSpeed()}</span>
+                    <span>Speed: {calculateSpeed(race)}</span>
+                    <Form.Check type='switch' label='Darkvision' checked={toggleDarkvision(race)}/>
                 </Form.Group>
                 <Form.Group controlId='formClass'>
                     <h3>Class</h3>
