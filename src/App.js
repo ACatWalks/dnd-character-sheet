@@ -21,7 +21,6 @@ function App() {
   const [characterClass, setCharacterClass] = useState('')
   const [alignment, setAlignment] = useState('')
   const [background, setBackground] = useState('')
-  const [languages, setLanguages] = useState([])
   const [strength, setStrength] = useState(10)
   const [dex, setDex] = useState(10)
   const [con, setCon] = useState(10)
@@ -29,7 +28,7 @@ function App() {
   const [wis, setWis] = useState(10)
   const [cha, setCha] = useState(10)
   const handleSubmit = () => {
-    console.log(race, characterClass, alignment, languages)
+    console.log(race, characterClass, alignment, background)
   }
   const handleRace = (e) => {
     setRace(`${e.target.value}`)
@@ -39,7 +38,10 @@ function App() {
   }
   const handleAlignment = (e) => {
     setAlignment(`${e.target.value}`)
-}
+  }
+  const handleBackground = (e) => {
+    setBackground(`${e.target.value}`)
+  }
   return (
     <div className="App">
       <h1>Create Your D&D Character!</h1>
@@ -47,8 +49,8 @@ function App() {
       <RaceForm handleRace={handleRace} race={race}/>
       <ClassForm handleClass={handleClass} con={con} characterClass={characterClass} />
       <AlignmentForm handleAlignment={handleAlignment}/>
-      <Languages race={race} characterClass={characterClass} background={background} languages={languages} />
-      <BackgroundForm background={background} />
+      <Languages race={race} characterClass={characterClass} background={background} />
+      <BackgroundForm background={background} handleBackground={handleBackground} />
       <h2>Equipment</h2>
       <Armor characterClass={characterClass} />
       <Weapons characterClass={characterClass} />
