@@ -33,7 +33,7 @@ function App() {
   const [wis, setWis] = useState(10)
   const [cha, setCha] = useState(10)
   const handleSubmit = () => {
-    console.log(name, race, characterClass, alignment, background, armorType, dex, con, wis)
+    console.log(name, race, characterClass, alignment, background, armorType, level)
   }
   const handleRace = (e) => {
     setRace(`${e.target.value}`)
@@ -56,7 +56,12 @@ function App() {
   const levelUp = () => {
     if(level < 20){
       setLevel(level + 1)
-    } else {
+    } 
+  }
+  const displayLevel = (level) => {
+    if(level <= 20){
+      return level
+    } else{
       return (
         <Alert variant='danger'>
           You cannot increase your character beyond 20th level. Check out Epic Boons in the Dungeon Master's guide for ways to improve your 20th level character.
@@ -69,10 +74,10 @@ function App() {
       <h1>Create Your D&D Character!</h1>
       <Form.Label>Name</Form.Label>
       <Form.Control type='name' onChange={handleName}></Form.Control>
-      <p>Level: {level}</p>
+      <p>Level: {displayLevel(level)}</p>
       <h2>The Essentials</h2>
       <RaceForm handleRace={handleRace} race={race}/>
-      <ClassForm handleClass={handleClass} con={con} characterClass={characterClass} />
+      <ClassForm handleClass={handleClass} con={con} characterClass={characterClass} levl={level} />
       <AlignmentForm handleAlignment={handleAlignment}/>
       <Languages race={race} characterClass={characterClass} background={background} />
       <BackgroundForm background={background} handleBackground={handleBackground} />

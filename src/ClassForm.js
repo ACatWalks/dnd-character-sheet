@@ -2,17 +2,35 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 
 function ClassForm(props) {
-    const calculateHitPoints = (characterClass) => {
+    const calculateHitPoints = (characterClass, level) => {
+        let hitPoints = 0
         let conMod = Math.floor((parseInt(props.con)-10)/2)
-        if(characterClass === 'sorcerer' || characterClass === 'wizard'){
-            return 6 + conMod
-        } else if(characterClass === 'bard' || characterClass === 'cleric' || characterClass === 'druid' || characterClass === 'monk' || characterClass === 'rogue' || characterClass === 'warlock'){
-            return 8 + conMod
-        } else if(characterClass === 'fighter' || characterClass === 'paladin' || characterClass === 'ranger'){
-            return 10 + conMod
-        } else if(characterClass === 'barbarian'){
-            return 12 + conMod
+        if(level >= 2){
+            if(characterClass === 'sorcerer' || characterClass === 'wizard'){
+                hitPoints += (Math.ceil(Math.random()*6) + conMod)*(level-1)
+                hitPoints += (6 + conMod)
+            } else if(characterClass === 'bard' || characterClass === 'cleric' || characterClass === 'druid' || characterClass === 'monk' || characterClass === 'rogue' || characterClass === 'warlock'){
+                hitPoints += (Math.ceil(Math.random()*8) + conMod)*(level-1)
+                hitPoints += (8 + conMod)
+            } else if(characterClass === 'fighter' || characterClass === 'paladin' || characterClass === 'ranger'){
+                hitPoints += (Math.ceil(Math.random()*10) + conMod)*(level-1)
+                hitPoints += (10 + conMod)
+            } else if(characterClass === 'barbarian'){
+                hitPoints += (Math.ceil(Math.random()*12) + conMod)*(level-1)
+                hitPoints += (12 + conMod)
+            }
+        } else {
+            if(characterClass === 'sorcerer' || characterClass === 'wizard'){
+                hitPoints += 6 + conMod
+            } else if(characterClass === 'bard' || characterClass === 'cleric' || characterClass === 'druid' || characterClass === 'monk' || characterClass === 'rogue' || characterClass === 'warlock'){
+                hitPoints += 8 + conMod
+            } else if(characterClass === 'fighter' || characterClass === 'paladin' || characterClass === 'ranger'){
+                hitPoints += 10 + conMod
+            } else if(characterClass === 'barbarian'){
+                hitPoints += 12 + conMod
+            }
         }
+        return hitPoints
     }
     return (
         <div>
@@ -33,7 +51,7 @@ function ClassForm(props) {
                         <option value='wizard'>Wizard</option>
                     </Form.Select>
                 </Form.Group>
-                <p>Hit Points: {calculateHitPoints(props.characterClass)}</p>
+                <p>Hit Points: {calculateHitPoints(props.characterClass, props.level)}</p>
         </div>
     )
 }

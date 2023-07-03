@@ -27,7 +27,7 @@ function Armor(props) {
             )
         }
     }
-    
+
     const displayArmorMenu = () => {
         if(armor === 'light'){
             return (
@@ -132,7 +132,7 @@ function Armor(props) {
         <div>
             {displayArmorMenu()}
             {displayShieldOption()}
-            <p>AC: {calculateArmorClass(props.armorType)}</p>
+            <p>Armor Class: {calculateArmorClass(props.armorType)}</p>
         </div>
     )
 }
