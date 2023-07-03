@@ -25,6 +25,7 @@ function App() {
   const [background, setBackground] = useState('')
   const [name, setName] = useState('')
   const [level, setLevel] = useState(1)
+  const [armorType, setArmorType] = useState('none')
   const [strength, setStrength] = useState(10)
   const [dex, setDex] = useState(10)
   const [con, setCon] = useState(10)
@@ -32,7 +33,7 @@ function App() {
   const [wis, setWis] = useState(10)
   const [cha, setCha] = useState(10)
   const handleSubmit = () => {
-    console.log(race, characterClass, alignment, background)
+    console.log(name, race, characterClass, alignment, background, armorType, dex, con, wis)
   }
   const handleRace = (e) => {
     setRace(`${e.target.value}`)
@@ -48,6 +49,9 @@ function App() {
   }
   const handleName = (e) => {
     setName(`${e.target.value}`)
+  }
+  const handleArmor = (e) => {
+    setArmorType(e.target.value)
   }
   const levelUp = () => {
     if(level < 20){
@@ -73,7 +77,7 @@ function App() {
       <Languages race={race} characterClass={characterClass} background={background} />
       <BackgroundForm background={background} handleBackground={handleBackground} />
       <h2>Equipment</h2>
-      <Armor characterClass={characterClass} />
+      <Armor characterClass={characterClass} dex={dex} con={con} wis={wis} armorType={armorType} handleArmor={handleArmor} />
       <Weapons characterClass={characterClass} />
       <Equipment characterClass={characterClass} />
       <h2>Scores and Proficiencies</h2>

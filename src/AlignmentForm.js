@@ -6,7 +6,7 @@ function AlignmentForm(props){
         <div>
             <Form.Group controlId='formAlignment'>
                     <h4>Alignment</h4>
-                    <Form.Select aria-label='alignmnet dropdown' onChange={props.handleAlignment}>
+                    <Form.Select aria-label='alignment dropdown' onChange={props.handleAlignment}>
                         <option value='lg'>Lawful Good</option>
                         <option value='ng'>Neutral Good</option>
                         <option value='cg'>Chaotic Good</option>
