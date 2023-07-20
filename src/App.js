@@ -32,8 +32,9 @@ function App() {
   const [int, setInt] = useState(10)
   const [wis, setWis] = useState(10)
   const [cha, setCha] = useState(10)
+  const [lifestyle, setLifestyle] = useState('')
   const handleSubmit = () => {
-    console.log(name, race, characterClass, alignment, background, armorType, level)
+    console.log(name, race, characterClass, alignment, background, armorType, level, strength, dex, con, int, wis, cha, lifestyle)
   }
   const handleRace = (e) => {
     setRace(`${e.target.value}`)
@@ -52,6 +53,28 @@ function App() {
   }
   const handleArmor = (e) => {
     setArmorType(e.target.value)
+  }
+  const handleStrength = (e) => {
+    setStrength(e.target.value)
+  }
+  const handleDex = (e) => {
+    setDex(e.target.value)
+  }
+  const handleCon = (e) => {
+    setCon(e.target.value)
+  }
+  const handleInt = (e) => {
+    setInt(e.target.value)
+  }
+  const handleWis = (e) => {
+    setWis(e.target.value)
+  }
+  const handleCha = (e) => {
+    setCha(e.target.value)
+  }
+  const handleLifestyle = (e) => {
+    let element = e.target
+    setLifestyle(`${element.value}`)
   }
   const levelUp = () => {
     if(level < 20){
@@ -87,8 +110,8 @@ function App() {
       <Equipment characterClass={characterClass} />
       <h2>Scores and Proficiencies</h2>
       <ToolsProfs race={race} characterClass={characterClass} background={background} />
-      <LifestyleForm />
-      <AbilityScores race={race} characterClass={characterClass} />
+      <LifestyleForm lifestyle={lifestyle} handleLifestyle={handleLifestyle} />
+      <AbilityScores race={race} characterClass={characterClass} handleStrength={handleStrength} handleDex={handleDex} handleCon={handleCon} handleInt={handleInt} handleWis={handleWis} handleCha={handleCha} />
       <Skills background={background} race={race} characterClass={characterClass} />    
       <h2>Spells and Miscellaneous</h2>
       <Spells race={race} characterClass={characterClass} />
