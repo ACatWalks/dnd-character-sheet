@@ -68,13 +68,14 @@ function Languages(props) {
             )
         }
     }
+    console.log(languages)
 
     return(
         <div>
             <Form.Group controlId='formLanguages'>
                     <h4>Languages</h4>
-                    {displayLangMenu(props.race, props.background)}
-                    {languages}   
+                    {displayLangMenu(props.race, props.background)}   
+                    {languages}
             </Form.Group>
         </div>
     )

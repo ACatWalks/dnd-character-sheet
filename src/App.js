@@ -100,7 +100,7 @@ function App() {
       <p>Level: {displayLevel(level)}</p>
       <h2>The Essentials</h2>
       <RaceForm handleRace={handleRace} race={race}/>
-      <ClassForm handleClass={handleClass} con={con} characterClass={characterClass} levl={level} />
+      <ClassForm handleClass={handleClass} con={con} characterClass={characterClass} level={level} />
       <AlignmentForm handleAlignment={handleAlignment}/>
       <Languages race={race} characterClass={characterClass} background={background} />
       <BackgroundForm background={background} handleBackground={handleBackground} />
